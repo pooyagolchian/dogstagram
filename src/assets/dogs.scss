@@ -1,0 +1,11 @@
+.dog-item {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  &__img {
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}

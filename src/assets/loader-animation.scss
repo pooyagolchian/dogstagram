@@ -1,0 +1,27 @@
+svg {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display: inline-block;
+}
+
+.made-with-love {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 10px;
+  color: #fff;
+  i {
+    font-style: normal;
+    color: #f50057;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
