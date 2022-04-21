@@ -1,18 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import DogsService from '../services/DogsService'
+import { RootState } from '../store'
 import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
+import { SVGLoader } from './SVGLoader'
+import { useNavigate } from 'react-router-dom'
 
 export const FavDogCard = (favDogItem: any) => {
+  const isLoading: boolean = useSelector(
+    (state: RootState) => state?.dogs.isLoading
+  )
+  const navigate = useNavigate()
+
   const { addToast } = useToasts()
   const favDogsItems = favDogItem['favDogItem']
   const dispatch = useDispatch()
   const handleDeleteFavDog = async (id: string) => {
     try {
+      await dispatch(dogAction.setLoader(true))
       await DogsService.DeleteFavDogRequest(id)
       const response = await DogsService.GetFavDogs()
       dispatch(dogAction.setFavDogs(response?.data))
+      await dispatch(dogAction.setLoader(false))
       addToast('Remove this dog from favorite!', { appearance: 'success' })
     } catch (error: any) {
       if (error.response.status === 400) {
@@ -22,8 +32,28 @@ export const FavDogCard = (favDogItem: any) => {
     }
   }
 
+  if (isLoading) {
+    return (
+      <div className="page-center col-1 m-0 m-auto">
+        <SVGLoader />
+      </div>
+    )
+  }
+
   if (favDogsItems.length === 0) {
-    return <div>No fav dogs</div>
+    return (
+      <>
+        <div className="page-center flex-column d-flex justify-content-center align-items-center">
+          <div className="col col-auto">There is no favorite dogs :(</div>
+          <img
+            onClick={() => navigate('/')}
+            className="col col-1 flex-row d-flex pt-5 cursor-pointer"
+            src="/img/happy.png"
+            alt=""
+          />
+        </div>
+      </>
+    )
   }
 
   return (

@@ -34,11 +34,11 @@ export const DogCard = (currentItems: any) => {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center flex-column py-5">
+      <div className="d-flex justify-content-center align-items-center flex-column">
         {dogsItem.map((item: any, index: any) => {
           return (
             <div
-              className="d-flex flex-column align-items-center justify-content-center col-4 py-5"
+              className="d-flex flex-column align-items-center justify-content-center col-4 py-3"
               key={item.id + index}
             >
               <img

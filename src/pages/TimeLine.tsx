@@ -85,6 +85,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
         pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="< previous"
+        className="pagination fixed-bottom bg-white"
       />
     </>
   )

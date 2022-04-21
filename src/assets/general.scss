@@ -21,6 +21,56 @@ body {
   cursor: pointer !important;
 }
 
-.red-fav-heart {
-  color: red;
+.header {
+  display: flex;
+  align-content: center;
+  border-bottom: 1px solid #666;
+  &__logo {
+    width: 40px;
+  }
+  &__menu {
+    display: flex;
+    ul {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      li {
+        list-style: none;
+        padding: 0 1em;
+      }
+    }
+  }
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #000;
+  background-color: white;
+  padding: 2em;
+  margin: 0 !important;
+  height: 70px;
+  line-height: 70px;
+  min-height: 70px;
+  li {
+    padding: 0 1em;
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+    &.disabled {
+      a {
+        color: #666;
+        text-decoration: none;
+      }
+    }
+  }
 }
