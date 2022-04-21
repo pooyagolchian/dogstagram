@@ -38,7 +38,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage
     setCurrentItems(dogs && dogs?.slice(itemOffset, endOffset))
-    setPageCount(Math.ceil(dogs.length / itemsPerPage))
+    setPageCount(dogs && Math.ceil(dogs.length / itemsPerPage))
   }, [dogs, itemOffset, itemsPerPage])
   const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % dogs.length
