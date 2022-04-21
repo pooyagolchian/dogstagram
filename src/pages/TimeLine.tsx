@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useEffect } from 'react'
 import { dogAction } from '../store/dogs'
-import DogsService from '../services/DogsService'
-import { DogCard } from '../components/DogCard'
 import { SVGLoader } from '../components/SVGLoader'
-import { Dog } from '../interfaces/IDog'
 import { RootState } from '../store'
+import DogsService from '../services/DogsService'
+import { useEffect, useState } from 'react'
+import ReactPaginate from 'react-paginate'
+import { DogCard } from '../components/DogCard'
 
-export const TimeLine = () => {
-  const dogs: Dog[] = useSelector((state: RootState) => state?.dogs.dogs)
+export const TimeLine = ({ itemsPerPage }: any) => {
+  const [currentItems, setCurrentItems] = useState([])
+  const [pageCount, setPageCount] = useState(0)
+  const [itemOffset, setItemOffset] = useState(0)
+  const dogs: any = useSelector((state: RootState) => state?.dogs.dogs)
   const isLoading: boolean = useSelector(
     (state: RootState) => state?.dogs.isLoading
   )
@@ -17,7 +20,12 @@ export const TimeLine = () => {
   useEffect(() => {
     const getDogs = async () => {
       await dispatch(dogAction.setLoader(true))
-      const response = await DogsService.FetchDogs()
+      const model = {
+        limit: 100,
+        page: itemsPerPage,
+        order: 'Desc',
+      }
+      const response = await DogsService.FetchDogs(model)
       await dispatch(dogAction.setDogs(response?.data))
       await dispatch(dogAction.setLoader(false))
     }
@@ -25,7 +33,17 @@ export const TimeLine = () => {
     getDogs().catch((e) => {
       console.error(e)
     })
-  }, [dispatch])
+  }, [dispatch, itemsPerPage])
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage
+    setCurrentItems(dogs.slice(itemOffset, endOffset))
+    setPageCount(Math.ceil(dogs.length / itemsPerPage))
+  }, [dogs, itemOffset, itemsPerPage])
+  const handlePageClick = (event: { selected: number }) => {
+    const newOffset = (event.selected * itemsPerPage) % dogs.length
+    setItemOffset(newOffset)
+  }
 
   const handleRefresh = () => {
     window.location.reload()
@@ -37,6 +55,10 @@ export const TimeLine = () => {
         <SVGLoader />
       </div>
     )
+  }
+
+  if (!dogs) {
+    return <>Result not found!</>
   }
 
   if ((!dogs || Object.keys(dogs).length === 0) && !isLoading) {
@@ -54,10 +76,16 @@ export const TimeLine = () => {
   }
 
   return (
-    <div className="container">
-      <div className="col col-12 col-sm-12 col-md-6 m-0 m-auto px-5 py-5">
-        <DogCard dogs={dogs} />
-      </div>
-    </div>
+    <>
+      <DogCard currentItems={currentItems} />
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+      />
+    </>
   )
 }

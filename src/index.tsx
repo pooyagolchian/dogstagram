@@ -9,15 +9,14 @@ import reportWebVitals from './reportWebVitals'
 import { ToastProvider } from 'react-toast-notifications'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <ToastProvider>
-          <App />
-        </ToastProvider>
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </Provider>
+  </BrowserRouter>,
+
   document.getElementById('root')
 )
 

@@ -1,15 +1,15 @@
 import http from '../helper/Http'
-import { Dog, FavDog, GetFavDog } from '../interfaces/IDog'
+import { Dog, FavDog } from '../interfaces/IDog'
 import { AxiosResponse } from 'axios'
 
-const FetchDogs = async (): Promise<AxiosResponse> => {
-  return await http.get<Dog[]>('/breeds')
+const FetchDogs = async (data: any): Promise<AxiosResponse> => {
+  return await http.get<Dog[]>('/images/search', { params: data })
 }
 
 const FavDogRequest = async (id: string): Promise<AxiosResponse> => {
   return await http.post<FavDog>('/favourites', {
     image_id: `${id}`,
-    sub_id: 'your-user-1234',
+    sub_id: 'User-123',
   })
 }
 const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
@@ -17,7 +17,13 @@ const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
 }
 
 const GetFavDogs = async (): Promise<AxiosResponse> => {
-  return await http.get<GetFavDog>('/favourites')
+  return await http.get<any>('/favourites', {
+    data: {
+      limit: 3,
+      order: 'DESC',
+      page: 0,
+    },
+  })
 }
 
 const DogsService = {
