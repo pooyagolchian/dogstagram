@@ -43,6 +43,11 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % dogs.length
     setItemOffset(newOffset)
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
   }
 
   const handleRefresh = () => {
@@ -85,7 +90,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
         pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="< previous"
-        className="pagination fixed-bottom bg-white"
+        className="pagination"
       />
     </>
   )
