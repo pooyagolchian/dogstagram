@@ -3,6 +3,7 @@ import { Favotites } from './pages/Favotites'
 import { TimeLine } from './pages/TimeLine'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { Dog } from './pages/Dog/_id'
 
 function App() {
   const navigate = useNavigate()
@@ -49,6 +50,7 @@ function App() {
       <Routes>
         <Route path="/" element={<TimeLine itemsPerPage={10} />} />
         <Route path="/favorites" element={<Favotites />} />
+        <Route path="/dog/:id" element={<Dog />} />
       </Routes>
     </div>
   )

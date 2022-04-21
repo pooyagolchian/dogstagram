@@ -6,6 +6,10 @@ const FetchDogs = async (data: any): Promise<AxiosResponse> => {
   return await http.get<Dog[]>('/images/search', { params: data })
 }
 
+const FetchDogInfo = async (id: any): Promise<AxiosResponse> => {
+  return await http.get<Dog[]>(`/images/${id}`)
+}
+
 const FavDogRequest = async (id: string): Promise<AxiosResponse> => {
   return await http.post<FavDog>('/favourites', {
     image_id: `${id}`,
@@ -31,6 +35,7 @@ const DogsService = {
   FavDogRequest,
   GetFavDogs,
   DeleteFavDogRequest,
+  FetchDogInfo,
 }
 
 export default DogsService

@@ -4,7 +4,7 @@ import DogsService from '../services/DogsService'
 import { RootState } from '../store'
 import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
-import { SVGLoader } from './SVGLoader'
+import { Loader } from './Loader'
 import { useNavigate } from 'react-router-dom'
 
 export const FavDogCard = (favDogItem: any) => {
@@ -12,10 +12,10 @@ export const FavDogCard = (favDogItem: any) => {
     (state: RootState) => state?.dogs.isLoading
   )
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const { addToast } = useToasts()
   const favDogsItems = favDogItem['favDogItem']
-  const dispatch = useDispatch()
+
   const handleDeleteFavDog = async (id: string) => {
     try {
       await dispatch(dogAction.setLoader(true))
@@ -35,7 +35,7 @@ export const FavDogCard = (favDogItem: any) => {
   if (isLoading) {
     return (
       <div className="page-center col-1 m-0 m-auto">
-        <SVGLoader />
+        <Loader />
       </div>
     )
   }

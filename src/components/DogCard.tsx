@@ -4,9 +4,11 @@ import DogsService from '../services/DogsService'
 import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 export const DogCard = (currentItems: any) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const dogsItem = currentItems['currentItems']
   const { addToast } = useToasts()
@@ -15,6 +17,10 @@ export const DogCard = (currentItems: any) => {
     const response = await DogsService.GetFavDogs()
     await dispatch(dogAction.setFavDogs(response?.data))
     return response
+  }
+
+  const handleMoreinfo = async (item: any) => {
+    navigate(`/dog/${item.id}`)
   }
 
   const handleFavDog = async (item: any) => {
@@ -34,11 +40,11 @@ export const DogCard = (currentItems: any) => {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center flex-column">
+      <div className="d-flex justify-content-center align-items-center flex-column px-2">
         {dogsItem.map((item: any, index: any) => {
           return (
             <div
-              className="d-flex flex-column align-items-center justify-content-center col-4 py-3"
+              className="d-flex flex-column align-items-center justify-content-center col-12 col-sm-12 col-md-6 col-lg-5 py-3"
               key={item.id + index}
             >
               <img
@@ -54,13 +60,18 @@ export const DogCard = (currentItems: any) => {
                       <div className="col col-auto">
                         <div className="fs-5 fw-bold">{breed.name}</div>
                       </div>
-                      <div
-                        onClick={() => handleFavDog(item)}
-                        key={item.reference_image_id}
-                        className="col col-auto"
-                      >
-                        <button className="btn btn-sm btn-success">
+                      <div className="col col-auto">
+                        <button
+                          onClick={() => handleFavDog(item)}
+                          className="btn btn-sm btn-success col-auto"
+                        >
                           Favorite
+                        </button>
+                        <button
+                          onClick={() => handleMoreinfo(item)}
+                          className="btn btn-outline-info btn-sm  col-auto ms-3"
+                        >
+                          show more
                         </button>
                       </div>
                     </div>

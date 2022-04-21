@@ -57,9 +57,10 @@ body {
   background-color: white;
   padding: 2em;
   margin: 0 !important;
-  height: 50px;
-  line-height: 50px;
-  min-height: 50px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column !important;
+  }
+
   li {
     padding: 0 1em;
     a {

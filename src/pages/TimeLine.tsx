@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { dogAction } from '../store/dogs'
-import { SVGLoader } from '../components/SVGLoader'
+import { Loader } from '../components/Loader'
 import { RootState } from '../store'
 import DogsService from '../services/DogsService'
 import { useEffect, useState } from 'react'
@@ -37,7 +37,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage
-    setCurrentItems(dogs.slice(itemOffset, endOffset))
+    setCurrentItems(dogs && dogs?.slice(itemOffset, endOffset))
     setPageCount(Math.ceil(dogs.length / itemsPerPage))
   }, [dogs, itemOffset, itemsPerPage])
   const handlePageClick = (event: { selected: number }) => {
@@ -57,7 +57,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   if (isLoading) {
     return (
       <div className="page-center col-1 m-0 m-auto">
-        <SVGLoader />
+        <Loader />
       </div>
     )
   }
