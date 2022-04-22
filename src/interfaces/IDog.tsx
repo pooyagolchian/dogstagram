@@ -17,14 +17,3 @@ export interface Dog {
 export interface FavDog {
   image_id: string
 }
-
-export interface GetFavDog {
-  created_at: string
-  id: number
-  image: {
-    url: string
-  }
-  image_id: string
-  sub_id: number | null
-  user_id: string
-}

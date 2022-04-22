@@ -22,9 +22,21 @@ body {
 }
 
 .header {
-  display: flex;
-  align-content: center;
   border-bottom: 1px solid #666;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 99999;
+  &__container {
+    display: flex;
+    align-content: center;
+    width: 100%;
+    max-width: 960px;
+    width: 690px;
+    margin: 0 auto;
+  }
   &__logo {
     width: 40px;
   }
@@ -47,6 +59,8 @@ body {
 
 .fixed {
   position: fixed !important;
+  z-index: 99999;
+  width: 100%;
 }
 
 .pagination {
@@ -58,7 +72,10 @@ body {
   padding: 2em;
   margin: 0 !important;
   @media screen and (max-width: 768px) {
-    flex-direction: column !important;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
   }
 
   li {
@@ -75,4 +92,9 @@ body {
       }
     }
   }
+}
+
+.dog-item-chip {
+  background-color: rgb(44, 0, 102);
+  font-size: 12px;
 }

@@ -7,7 +7,7 @@ import { useToasts } from 'react-toast-notifications'
 import { Loader } from './Loader'
 import { useNavigate } from 'react-router-dom'
 
-export const FavDogCard = (favDogItem: any) => {
+export const FavDogCard = (favDogItem: { [x: string]: any }) => {
   const isLoading: boolean = useSelector(
     (state: RootState) => state?.dogs.isLoading
   )
@@ -42,45 +42,46 @@ export const FavDogCard = (favDogItem: any) => {
 
   if (favDogsItems.length === 0) {
     return (
-      <>
-        <div className="page-center flex-column d-flex justify-content-center align-items-center">
-          <div className="col col-auto">There is no favorite dogs :(</div>
-          <img
-            onClick={() => navigate('/')}
-            className="col col-1 flex-row d-flex pt-5 cursor-pointer"
-            src="/img/happy.png"
-            alt=""
-          />
-        </div>
-      </>
+      <div className="page-center flex-column d-flex justify-content-center align-items-center">
+        <div className="col col-auto">There is no favorite dogs :(</div>
+        <img
+          onClick={() => navigate('/')}
+          className="col col-1 flex-row d-flex pt-5 cursor-pointer"
+          src="/img/happy.png"
+          alt=""
+        />
+      </div>
     )
   }
 
   return (
-    <>
-      <div className="container py-5">
-        <div className="row">
-          {favDogsItems &&
-            favDogsItems.map((item: any) => (
-              <div
-                key={item.id}
-                className="col col-12 col-sm-12 col-md-6 col-lg-2"
+    <div className="col-12 col-sm-12 col-lg-5 m-auto m-0 py-5">
+      <div className="row">
+        {favDogsItems &&
+          favDogsItems.map((item: { id: string; image: { url: string } }) => (
+            <div
+              key={item.id}
+              className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3"
+            >
+              <img
+                className="card-img w-100 ratio-16x9 figure-img"
+                style={{
+                  background: `url(${item.image.url}) center center / cover no-repeat`,
+                  width: '300px',
+                  height: '200px',
+                  borderRadius: '5px',
+                }}
+                alt=""
+              />
+              <button
+                onClick={() => handleDeleteFavDog(item.id)}
+                className="btn btn-sm btn-danger small"
               >
-                <img
-                  className="card-img w-100 ratio-16x9 figure-img"
-                  src={item.image.url}
-                  alt=""
-                />
-                <button
-                  onClick={() => handleDeleteFavDog(item.id)}
-                  className="btn btn-sm btn-danger"
-                >
-                  Unfavorite
-                </button>
-              </div>
-            ))}
-        </div>
+                Unfavorite
+              </button>
+            </div>
+          ))}
       </div>
-    </>
+    </div>
   )
 }

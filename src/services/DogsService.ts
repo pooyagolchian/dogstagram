@@ -10,14 +10,19 @@ const FetchBreeds = async (): Promise<AxiosResponse> => {
   return await http.get<any>('/breeds')
 }
 
-const SearchAllDogsByBreed = async (data: any): Promise<AxiosResponse> => {
+const SearchAllDogsByBreed = async (data: {
+  q: string
+  limit: number
+}): Promise<AxiosResponse> => {
   return await http.get<any>('/images/search', { params: data })
 }
-const FetchDogInfo = async (id: any): Promise<AxiosResponse> => {
+const FetchDogInfo = async (id: string | undefined): Promise<AxiosResponse> => {
   return await http.get<Dog[]>(`/images/${id}`)
 }
 
-const FavDogRequest = async (id: string): Promise<AxiosResponse> => {
+const FavDogRequest = async (
+  id: string | undefined
+): Promise<AxiosResponse> => {
   return await http.post<FavDog>('/favourites', {
     image_id: `${id}`,
     sub_id: 'User-123',

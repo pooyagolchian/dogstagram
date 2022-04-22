@@ -106,7 +106,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   }
 
   if (!dogs) {
-    return <>Result not found!</>
+    return <div className="page-center">Result not found!</div>
   }
 
   if (!dogs || (Object.keys(dogs).length === 0 && !isLoading)) {
@@ -134,7 +134,8 @@ export const TimeLine = ({ itemsPerPage }: any) => {
         defaultValue={selectedOption}
         onChange={setSelectedOption}
         options={breeds}
-        className="col-12 col-sm-12 col-md-12 col-lg-5 m-0 m-auto pt-3"
+        placeholder={'Select Breed'}
+        className="col-12 col-sm-12 col-md-12 col-lg-5 m-0 m-auto pt-3 px-2 px-sm-2 px-md-2 "
       />
       <DogCard currentItems={currentItems} />
       <ReactPaginate
