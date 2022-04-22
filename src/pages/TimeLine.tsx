@@ -43,10 +43,10 @@ export const TimeLine = ({ itemsPerPage }: any) => {
     const fetchBreedsList = async () => {
       await dispatch(dogAction.setLoader(true))
       let response = (await DogsService.FetchBreeds())?.data
-      response = response.map((x: { name: any; breed_group: any }) => {
+      response = response.map((x: { name: string; id: number }) => {
         return {
           label: x.name,
-          value: x.breed_group,
+          value: x.id,
         }
       })
       setBreeds(response)
@@ -64,7 +64,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
         await dispatch(dogAction.setLoader(true))
 
         let model = {
-          q: selectedOption.label,
+          breed_ids: selectedOption.value,
           limit: 20,
         }
         const response = await DogsService.SearchAllDogsByBreed(model)

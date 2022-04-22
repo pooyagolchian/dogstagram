@@ -11,7 +11,7 @@ const FetchBreeds = async (): Promise<AxiosResponse> => {
 }
 
 const SearchAllDogsByBreed = async (data: {
-  q: string
+  breed_ids: number[]
   limit: number
 }): Promise<AxiosResponse> => {
   return await http.get<any>('/images/search', { params: data })
