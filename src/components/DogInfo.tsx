@@ -23,7 +23,7 @@ export const DogInfo = (dogInfo: { [x: string]: any }) => {
                       life_span: string
                       temperament: string
                     },
-                    breedIndex: any
+                    breedIndex: number
                   ) => {
                     return (
                       <Fragment key={breed.name + breedIndex}>

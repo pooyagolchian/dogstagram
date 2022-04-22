@@ -24,7 +24,7 @@ export const DogCard = (currentItems: any) => {
     url?: string
     breeds?: { name: string }[]
   }): Promise<void> => {
-    navigate(`/dog/${item.id}`)
+    navigate(`/dog/info/${item.id}`)
   }
 
   const handleFavDog = async (item: {
