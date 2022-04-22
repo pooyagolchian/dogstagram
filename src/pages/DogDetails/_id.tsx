@@ -7,11 +7,12 @@ import { useParams } from 'react-router-dom'
 import { DogInfo } from '../../components/DogInfo'
 import { Loader } from '../../components/Loader'
 import { RootState } from '../../store'
+import { Dog } from '../../interfaces/IDog'
 
 export const DogDetails = () => {
   const dispatch = useDispatch()
   let { id } = useParams()
-  const [dog, setDog] = useState([])
+  const [dog, setDog] = useState<Dog[]>([])
   const isLoading: boolean = useSelector(
     (state: RootState) => state?.dogs.isLoading
   )

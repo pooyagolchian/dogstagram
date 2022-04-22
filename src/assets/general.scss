@@ -28,7 +28,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  z-index: 99999;
   &__container {
     display: flex;
     align-content: center;
@@ -59,7 +58,6 @@ body {
 
 .fixed {
   position: fixed !important;
-  z-index: 99999;
   width: 100%;
 }
 
