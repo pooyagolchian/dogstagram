@@ -7,7 +7,7 @@ const SearchAllDogs = async (data: any): Promise<AxiosResponse> => {
 }
 
 const FetchBreeds = async (): Promise<AxiosResponse> => {
-  return await http.get<any>('/breeds')
+  return await http.get<Dog[]>('/breeds')
 }
 
 const SearchAllDogsByBreed = async (data: {
@@ -33,13 +33,16 @@ const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
 }
 
 const FetchFavDogs = async (): Promise<AxiosResponse> => {
-  return await http.get<any>('/favourites', {
-    data: {
-      limit: 3,
-      order: 'DESC',
-      page: 0,
-    },
-  })
+  return await http.get<{ limit: number; order: string; page: number }>(
+    '/favourites',
+    {
+      data: {
+        limit: 3,
+        order: 'DESC',
+        page: 0,
+      },
+    }
+  )
 }
 
 const DogsService = {
