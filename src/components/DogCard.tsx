@@ -14,7 +14,7 @@ export const DogCard = (currentItems: any) => {
   const { addToast } = useToasts()
 
   const getFavDogs = async () => {
-    const response = await DogsService.GetFavDogs()
+    const response = await DogsService.FetchFavDogs()
     await dispatch(dogAction.setFavDogs(response?.data))
     return response
   }
@@ -34,7 +34,7 @@ export const DogCard = (currentItems: any) => {
       }
     }
   }
-  if (dogsItem.length === 0) {
+  if (dogsItem && dogsItem.length === 0) {
     return <div> No items to display </div>
   }
 

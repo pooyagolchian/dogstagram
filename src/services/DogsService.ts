@@ -2,10 +2,17 @@ import http from '../helper/Http'
 import { Dog, FavDog } from '../interfaces/IDog'
 import { AxiosResponse } from 'axios'
 
-const FetchDogs = async (data: any): Promise<AxiosResponse> => {
+const SearchAllDogs = async (data: any): Promise<AxiosResponse> => {
   return await http.get<Dog[]>('/images/search', { params: data })
 }
 
+const FetchBreeds = async (): Promise<AxiosResponse> => {
+  return await http.get<any>('/breeds')
+}
+
+const SearchAllDogsByBreed = async (data: any): Promise<AxiosResponse> => {
+  return await http.get<any>('/images/search', { params: data })
+}
 const FetchDogInfo = async (id: any): Promise<AxiosResponse> => {
   return await http.get<Dog[]>(`/images/${id}`)
 }
@@ -20,7 +27,7 @@ const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
   return await http.delete<FavDog>(`/favourites/${id}`)
 }
 
-const GetFavDogs = async (): Promise<AxiosResponse> => {
+const FetchFavDogs = async (): Promise<AxiosResponse> => {
   return await http.get<any>('/favourites', {
     data: {
       limit: 3,
@@ -31,11 +38,13 @@ const GetFavDogs = async (): Promise<AxiosResponse> => {
 }
 
 const DogsService = {
-  FetchDogs,
+  SearchAllDogs,
   FavDogRequest,
-  GetFavDogs,
+  FetchFavDogs,
   DeleteFavDogRequest,
   FetchDogInfo,
+  FetchBreeds,
+  SearchAllDogsByBreed,
 }
 
 export default DogsService

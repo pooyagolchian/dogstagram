@@ -20,7 +20,7 @@ export const FavDogCard = (favDogItem: any) => {
     try {
       await dispatch(dogAction.setLoader(true))
       await DogsService.DeleteFavDogRequest(id)
-      const response = await DogsService.GetFavDogs()
+      const response = await DogsService.FetchFavDogs()
       dispatch(dogAction.setFavDogs(response?.data))
       await dispatch(dogAction.setLoader(false))
       addToast('Remove this dog from favorite!', { appearance: 'success' })

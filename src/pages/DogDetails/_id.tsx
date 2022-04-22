@@ -1,14 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import DogsService from '../../services/DogsService'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { dogAction } from '../../store/dogs'
 import { useParams } from 'react-router-dom'
 import { DogInfo } from '../../components/DogInfo'
-export const Dog = () => {
+import { Loader } from '../../components/Loader'
+import { RootState } from '../../store'
+
+export const DogDetails = () => {
   const dispatch = useDispatch()
   let { id } = useParams()
   const [dog, setDog] = useState([])
+  const isLoading: boolean = useSelector(
+    (state: RootState) => state?.dogs.isLoading
+  )
 
   useEffect(() => {
     const getDogs = async () => {
@@ -23,6 +29,14 @@ export const Dog = () => {
       console.error(e)
     })
   }, [])
+
+  if (isLoading) {
+    return (
+      <div className="page-center col-1 m-0 m-auto">
+        <Loader />
+      </div>
+    )
+  }
 
   return (
     <>

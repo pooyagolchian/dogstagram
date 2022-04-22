@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from 'react-redux'
 import { dogAction } from '../store/dogs'
 import { Loader } from '../components/Loader'
@@ -6,11 +7,14 @@ import DogsService from '../services/DogsService'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { DogCard } from '../components/DogCard'
+import Select from 'react-select'
 
 export const TimeLine = ({ itemsPerPage }: any) => {
   const [currentItems, setCurrentItems] = useState([])
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
+  const [selectedOption, setSelectedOption] = useState<any>([])
+  const [breeds, setBreeds] = useState([])
   const dogs: any = useSelector((state: RootState) => state?.dogs.dogs)
   const isLoading: boolean = useSelector(
     (state: RootState) => state?.dogs.isLoading
@@ -25,7 +29,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
         page: itemsPerPage,
         order: 'Desc',
       }
-      const response = await DogsService.FetchDogs(model)
+      const response = await DogsService.SearchAllDogs(model)
       await dispatch(dogAction.setDogs(response?.data))
       await dispatch(dogAction.setLoader(false))
     }
@@ -33,7 +37,46 @@ export const TimeLine = ({ itemsPerPage }: any) => {
     getDogs().catch((e) => {
       console.error(e)
     })
-  }, [dispatch, itemsPerPage])
+  }, [])
+
+  useEffect(() => {
+    const fetchBreedsList = async () => {
+      await dispatch(dogAction.setLoader(true))
+      let response = (await DogsService.FetchBreeds())?.data
+      response = response.map((x: { name: any; breed_group: any }) => {
+        return {
+          label: x.name,
+          value: x.breed_group,
+        }
+      })
+      setBreeds(response)
+      await dispatch(dogAction.setLoader(false))
+    }
+
+    fetchBreedsList().catch((e) => {
+      console.error(e)
+    })
+  }, [dispatch])
+
+  useEffect(() => {
+    if (selectedOption.length !== 0) {
+      const searchDogsByBreed = async () => {
+        await dispatch(dogAction.setLoader(true))
+
+        let model = {
+          q: selectedOption.label,
+          limit: 20,
+        }
+        const response = await DogsService.SearchAllDogsByBreed(model)
+        await dispatch(dogAction.setDogs(response?.data))
+        await dispatch(dogAction.setLoader(false))
+      }
+
+      searchDogsByBreed().catch((e) => {
+        console.error(e)
+      })
+    }
+  }, [selectedOption])
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage
@@ -66,9 +109,14 @@ export const TimeLine = ({ itemsPerPage }: any) => {
     return <>Result not found!</>
   }
 
-  if ((!dogs || Object.keys(dogs).length === 0) && !isLoading) {
+  if (!dogs || (Object.keys(dogs).length === 0 && !isLoading)) {
     return (
       <div className="page-center flex-column">
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={breeds}
+        />
         <div className="fs-2" data-testid="no-user-title">
           NO Dogs! <i className="lnr lnr-users" />
         </div>
@@ -82,6 +130,12 @@ export const TimeLine = ({ itemsPerPage }: any) => {
 
   return (
     <>
+      <Select
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        options={breeds}
+        className="col-12 col-sm-12 col-md-12 col-lg-5 m-0 m-auto pt-3"
+      />
       <DogCard currentItems={currentItems} />
       <ReactPaginate
         breakLabel="..."
