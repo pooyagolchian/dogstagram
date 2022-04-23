@@ -3,7 +3,11 @@
 /* eslint-disable jest/valid-expect-in-promise */
 /// <reference types="cypress" />
 
-import { mockedDogsEndpoint, mockedDogInfoEndpoint } from '../mock/api'
+import {
+  mockedDogsEndpoint,
+  mockedDogInfoEndpoint,
+  mockedFavDogEndpoint,
+} from '../mock/api'
 
 describe('Dogstagram E2E testing', () => {
   it('should render all dogs and all element', () => {
@@ -24,7 +28,7 @@ describe('Dogstagram E2E testing', () => {
       method: 'POST',
       url: `https://api.thedogapi.com/v1/favourites`,
       headers: {
-        'x-api-key': '546da201-5714-4ff8-bf02-f281f4171ef4',
+        'x-api-key': Cypress.env.token,
       },
       body: {
         image_id: 'buxVXCo9V',
@@ -64,9 +68,9 @@ describe('Dogstagram E2E testing', () => {
 
   it('should click on favorite and test unfavorite', () => {
     cy.visit('/favorites')
+    mockedFavDogEndpoint()
     cy.location('pathname').should('eq', '/favorites')
     cy.get('[data-testid="unfavorite-btn"]').click()
     cy.get('[data-testid="unfavorite-btn"]').should('not.exist')
-    cy.get('[data-testid="there-is-no-fav-dog"]').should('exist')
   })
 })

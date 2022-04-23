@@ -7,11 +7,7 @@
     "openMode": 1
   },
   "env": {
-    "mobileViewportWidthBreakpoint": 414,
-    "coverage": false,
-    "codeCoverage": {
-      "url": "http://localhost:3001/__coverage__"
-    }
+    "token": "546da201-5714-4ff8-bf02-f281f4171ef4"
   },
   "experimentalStudio": true
 }

@@ -18,3 +18,13 @@ export const mockedDogInfoEndpoint = () => {
     { fixture: '../fixtures/dogs.json' }
   )
 }
+
+export const mockedFavDogEndpoint = () => {
+  cy.intercept(
+    {
+      method: 'GET',
+      url: 'https://api.thedogapi.com/v1/favourites',
+    },
+    { fixture: '../fixtures/fav-dog.json' }
+  )
+}
