@@ -47,7 +47,7 @@ export interface SearchAllDogsByBreedBodyData {
 
 export interface SearchAllDogBodyData {
   limit: number
-  page: any
+  page: number
   order: string
 }
 
