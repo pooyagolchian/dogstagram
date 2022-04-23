@@ -39,3 +39,26 @@ export interface FetchFavDogBodyData {
   order: string
   page: number
 }
+
+export interface SearchAllDogsByBreedBodyData {
+  breed_ids: number[]
+  limit: number
+}
+
+export interface SearchAllDogBodyData {
+  limit: number
+  page: any
+  order: string
+}
+
+export interface DogInfoBreed {
+  weight: { imperial: string; metric: string }
+  height: { imperial: string; metric: string }
+  id: string | number
+  name: string
+  bred_for: string
+  breed_group: string
+  life_span: string
+  temperament: string
+  reference_image_id: string
+}

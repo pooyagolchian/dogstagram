@@ -1,8 +1,16 @@
 import http from '../helper/Http'
-import { Dog, FavDog, FetchFavDogBodyData } from '../interfaces/IDog'
+import {
+  Dog,
+  FavDog,
+  FetchFavDogBodyData,
+  SearchAllDogBodyData,
+  SearchAllDogsByBreedBodyData,
+} from '../interfaces/IDog'
 import { AxiosResponse } from 'axios'
 
-const SearchAllDogs = async (data: any): Promise<AxiosResponse> => {
+const SearchAllDogs = async (
+  data: SearchAllDogBodyData
+): Promise<AxiosResponse> => {
   return await http.get<Dog[]>('/images/search', { params: data })
 }
 
@@ -10,10 +18,9 @@ const FetchBreeds = async (): Promise<AxiosResponse> => {
   return await http.get<Dog[]>('/breeds')
 }
 
-const SearchAllDogsByBreed = async (data: {
-  breed_ids: number[]
-  limit: number
-}): Promise<AxiosResponse> => {
+const SearchAllDogsByBreed = async (
+  data: SearchAllDogsByBreedBodyData
+): Promise<AxiosResponse> => {
   return await http.get<any>('/images/search', { params: data })
 }
 const FetchDogInfo = async (id: string | undefined): Promise<AxiosResponse> => {

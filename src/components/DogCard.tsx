@@ -5,7 +5,7 @@ import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Dog, FavDog } from '../interfaces/IDog'
+import { Dog } from '../interfaces/IDog'
 
 interface Props {
   currentItems: Dog[]

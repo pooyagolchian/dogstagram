@@ -8,14 +8,19 @@ import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { DogCard } from '../components/DogCard'
 import Select from 'react-select'
+import { Dog } from '../interfaces/IDog'
 
-export const TimeLine = ({ itemsPerPage }: any) => {
+interface Props {
+  itemsPerPage: number
+}
+
+export const TimeLine = ({ itemsPerPage }: Props) => {
   const [currentItems, setCurrentItems] = useState([])
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
   const [selectedOption, setSelectedOption] = useState<any>([])
   const [breeds, setBreeds] = useState([])
-  const dogs: any = useSelector((state: RootState) => state?.dogs.dogs)
+  const dogs: Dog[] | any = useSelector((state: RootState) => state?.dogs.dogs)
   const isLoading: boolean = useSelector(
     (state: RootState) => state?.dogs.isLoading
   )
@@ -79,9 +84,11 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   }, [selectedOption])
 
   useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage
-    setCurrentItems(dogs && dogs?.slice(itemOffset, endOffset))
-    setPageCount(dogs && Math.ceil(dogs.length / itemsPerPage))
+    if (dogs) {
+      const endOffset = itemOffset + itemsPerPage
+      setCurrentItems(dogs.slice(itemOffset, endOffset))
+      setPageCount(Math.ceil(dogs.length / itemsPerPage))
+    }
   }, [dogs, itemOffset, itemsPerPage])
   const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % dogs.length
