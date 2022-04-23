@@ -6,15 +6,19 @@ import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
 import { Loader } from './Loader'
 import { useNavigate } from 'react-router-dom'
+import { FavDog } from '../interfaces/IDog'
 
-export const FavDogCard = (favDogItem: { [x: string]: any }) => {
+interface Props {
+  favDogItem: FavDog[]
+}
+
+export const FavDogCard = ({ favDogItem }: Props) => {
   const isLoading: boolean = useSelector(
     (state: RootState) => state?.dogs.isLoading
   )
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { addToast } = useToasts()
-  const favDogsItems = favDogItem['favDogItem']
 
   const handleDeleteFavDog = async (id: string) => {
     try {
@@ -40,7 +44,7 @@ export const FavDogCard = (favDogItem: { [x: string]: any }) => {
     )
   }
 
-  if (favDogsItems.length === 0) {
+  if (favDogItem.length === 0) {
     return (
       <div className="page-center flex-column d-flex justify-content-center align-items-center">
         <div data-testid="there-is-no-fav-dog" className="col col-auto">
@@ -59,31 +63,24 @@ export const FavDogCard = (favDogItem: { [x: string]: any }) => {
   return (
     <div className="col-12 col-sm-12 col-lg-5 m-auto m-0 py-5 px-3">
       <div className="row">
-        {favDogsItems &&
-          favDogsItems.map((item: { id: string; image: { url: string } }) => (
+        {favDogItem?.map((item: FavDog) => (
+          <div
+            key={item.id}
+            className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3"
+          >
             <div
-              key={item.id}
-              className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3"
+              className="card-img w-100 ratio-16x9 figure-img fav-dog-img"
+              style={{ backgroundImage: `url(${item?.image.url})` }}
+            ></div>
+            <button
+              onClick={() => handleDeleteFavDog(item.id as string)}
+              className="btn btn-sm btn-danger small"
+              data-testid="unfavorite-btn"
             >
-              <img
-                className="card-img w-100 ratio-16x9 figure-img"
-                style={{
-                  background: `url(${item.image.url}) center center / contain no-repeat`,
-                  width: '300px',
-                  height: '200px',
-                  borderRadius: '5px',
-                }}
-                alt=""
-              />
-              <button
-                onClick={() => handleDeleteFavDog(item.id)}
-                className="btn btn-sm btn-danger small"
-                data-testid="unfavorite-btn"
-              >
-                Unfavorite
-              </button>
-            </div>
-          ))}
+              Unfavorite
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   )

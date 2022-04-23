@@ -1,4 +1,5 @@
 export interface Dog {
+  name?: string
   breeds: {
     weight: {
       imperial: string
@@ -16,13 +17,13 @@ export interface Dog {
     temperament: string
     reference_image_id: string
   }[]
-  id: string | number
+  id?: string | undefined
   url: string
   width: number
   height: number
 }
 export interface FavDog {
-  id: number
+  id: string | number
   user_id: string
   image_id: string
   sub_id: string
@@ -31,4 +32,10 @@ export interface FavDog {
     id: string
     url: string
   }
+}
+
+export interface FetchFavDogBodyData {
+  limit: number
+  order: string
+  page: number
 }

@@ -1,5 +1,5 @@
 import http from '../helper/Http'
-import { Dog, FavDog } from '../interfaces/IDog'
+import { Dog, FavDog, FetchFavDogBodyData } from '../interfaces/IDog'
 import { AxiosResponse } from 'axios'
 
 const SearchAllDogs = async (data: any): Promise<AxiosResponse> => {
@@ -33,16 +33,13 @@ const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
 }
 
 const FetchFavDogs = async (): Promise<AxiosResponse> => {
-  return await http.get<{ limit: number; order: string; page: number }>(
-    '/favourites',
-    {
-      data: {
-        limit: 3,
-        order: 'DESC',
-        page: 0,
-      },
-    }
-  )
+  return await http.get<FetchFavDogBodyData>('/favourites', {
+    data: {
+      limit: 3,
+      order: 'DESC',
+      page: 0,
+    },
+  })
 }
 
 const DogsService = {

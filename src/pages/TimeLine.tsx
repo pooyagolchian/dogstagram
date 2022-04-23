@@ -112,11 +112,6 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   if (!dogs || (Object.keys(dogs).length === 0 && !isLoading)) {
     return (
       <div className="page-center flex-column">
-        <Select
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
-          options={breeds}
-        />
         <div className="fs-2" data-testid="no-user-title">
           NO Dogs! <i className="lnr lnr-users" />
         </div>

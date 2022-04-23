@@ -5,12 +5,15 @@ import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { Dog, FavDog } from '../interfaces/IDog'
 
-export const DogCard = (currentItems: any) => {
+interface Props {
+  currentItems: Dog[]
+}
+
+export const DogCard = ({ currentItems }: Props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const dogsItem = currentItems['currentItems']
   const { addToast } = useToasts()
 
   const getFavDogs = async () => {
@@ -19,19 +22,11 @@ export const DogCard = (currentItems: any) => {
     return response
   }
 
-  const handleMoreinfo = async (item: {
-    id: any
-    url?: string
-    breeds?: { name: string }[]
-  }): Promise<void> => {
+  const handleMoreinfo = async (item: Dog): Promise<void> => {
     navigate(`/dog/info/${item.id}`)
   }
 
-  const handleFavDog = async (item: {
-    id: any
-    url?: string
-    breeds?: { name: string }[]
-  }) => {
+  const handleFavDog = async (item: Dog) => {
     try {
       await DogsService.FavDogRequest(item.id)
       await getFavDogs()
@@ -42,70 +37,54 @@ export const DogCard = (currentItems: any) => {
       }
     }
   }
-  if (dogsItem && dogsItem.length === 0) {
+  if (currentItems && currentItems.length === 0) {
     return <div className="page-center"> No dogs to display! </div>
   }
 
   return (
     <div className="d-flex justify-content-center align-items-center flex-column px-2">
-      {dogsItem.map(
-        (
-          item: {
-            id: string
-            url: string
-            breeds: { name: string }[]
-          },
-          index: string | number
-        ): JSX.Element => {
-          return (
-            <div
-              className="d-flex flex-column align-items-center justify-content-center col-12 col-sm-12 col-md-6 col-lg-5 py-3"
-              key={item.id + index}
-            >
-              <img
-                className="col col-12 figure-img card-img"
-                src={item.url}
-                alt={item.id}
-              />
+      {currentItems?.map((item: Dog): JSX.Element => {
+        return (
+          <div
+            className="d-flex flex-column align-items-center justify-content-center col-12 col-sm-12 col-md-6 col-lg-5 py-3"
+            key={item.id}
+          >
+            <img
+              className="col col-12 figure-img card-img"
+              src={item.url}
+              alt=""
+            />
 
-              {item.breeds.map(
-                (
-                  breed: {
-                    name: string
-                  },
-                  breedIndex: number
-                ): JSX.Element => {
-                  return (
-                    <Fragment key={breed.name + breedIndex}>
-                      <div className="w-100 d-flex flex-row justify-content-between py-2">
-                        <div className="col col-auto">
-                          <div className="fs-5 fw-bold">{breed.name}</div>
-                        </div>
-                        <div className="col col-auto">
-                          <button
-                            onClick={() => handleFavDog(item)}
-                            className="btn btn-sm btn-success col-auto"
-                            data-testid="favorite-btn"
-                          >
-                            Favorite
-                          </button>
-                          <button
-                            data-testid="seemore-btn"
-                            onClick={() => handleMoreinfo(item)}
-                            className="btn btn-dark btn-sm col-auto ms-3"
-                          >
-                            See More
-                          </button>
-                        </div>
-                      </div>
-                    </Fragment>
-                  )
-                }
-              )}
-            </div>
-          )
-        }
-      )}
+            {item.breeds?.map((breed: { name: string }) => {
+              return (
+                <Fragment key={breed.name}>
+                  <div className="w-100 d-flex flex-row justify-content-between py-2">
+                    <div className="col col-auto">
+                      <div className="fs-5 fw-bold">{breed.name}</div>
+                    </div>
+                    <div className="col col-auto">
+                      <button
+                        onClick={() => handleFavDog(item)}
+                        className="btn btn-sm btn-success col-auto"
+                        data-testid="favorite-btn"
+                      >
+                        Favorite
+                      </button>
+                      <button
+                        data-testid="seemore-btn"
+                        onClick={() => handleMoreinfo(item)}
+                        className="btn btn-dark btn-sm col-auto ms-3"
+                      >
+                        See More
+                      </button>
+                    </div>
+                  </div>
+                </Fragment>
+              )
+            })}
+          </div>
+        )
+      })}
     </div>
   )
 }

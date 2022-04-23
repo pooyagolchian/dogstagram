@@ -6,9 +6,10 @@ import DogsService from '../services/DogsService'
 import { useEffect } from 'react'
 import { FavDogCard } from '../components/FavDogCard'
 import { Loader } from '../components/Loader'
+import { FavDog } from '../interfaces/IDog'
 
 export const Favotites = () => {
-  const favDogsList: any = useSelector(
+  const favDogsList: FavDog[] = useSelector(
     (state: RootState) => state?.dogs.favDogs
   )
   const isLoading: boolean = useSelector(

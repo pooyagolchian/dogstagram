@@ -4,18 +4,22 @@ import { useEffect } from 'react'
 export const Header = () => {
   const navigate = useNavigate()
 
-  useEffect(() => {
+  const onScroll = (): void => {
     const header: any = document.getElementById('fixHeader')
     const sticky: any = header.offsetTop
-    const scrollCallBack: any = window.addEventListener('scroll', () => {
-      if (window.pageYOffset > sticky) {
-        header.classList.add('fixed')
-      } else {
-        header.classList.remove('fixed')
-      }
-    })
+
+    if (window.pageYOffset > sticky) {
+      header.classList.add('fixed')
+    } else {
+      header.classList.remove('fixed')
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+
     return () => {
-      window.removeEventListener('scroll', scrollCallBack)
+      window.removeEventListener('scroll', onScroll)
     }
   }, [])
   return (
