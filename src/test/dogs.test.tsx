@@ -43,7 +43,7 @@ describe('Dogs Timeline', () => {
       expectedState
     )
   })
-  test('should fetch dogs', async () => {
+  test('should fetch favorites dogs', async () => {
     const previousState = { dogs: [], favDogs: [], isLoading: false }
     const expectedState = {
       dogs: [],
