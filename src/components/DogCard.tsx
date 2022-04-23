@@ -85,10 +85,12 @@ export const DogCard = (currentItems: any) => {
                           <button
                             onClick={() => handleFavDog(item)}
                             className="btn btn-sm btn-success col-auto"
+                            data-testid="favorite-btn"
                           >
                             Favorite
                           </button>
                           <button
+                            data-testid="seemore-btn"
                             onClick={() => handleMoreinfo(item)}
                             className="btn btn-dark btn-sm col-auto ms-3"
                           >

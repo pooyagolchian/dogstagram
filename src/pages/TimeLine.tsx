@@ -131,6 +131,7 @@ export const TimeLine = ({ itemsPerPage }: any) => {
   return (
     <>
       <Select
+        data-testid="select-breed"
         defaultValue={selectedOption}
         onChange={setSelectedOption}
         options={breeds}

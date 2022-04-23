@@ -27,7 +27,12 @@ export const Header = () => {
               onClick={() => navigate('/')}
               className="col-auto cursor-pointer"
             >
-              <img className="header__logo" src="/img/happy.png" alt="logo" />
+              <img
+                data-testid="logo"
+                className="header__logo"
+                src="/img/happy.png"
+                alt="logo"
+              />
             </div>
 
             <div className="header__menu col-auto p-0 m-0">
@@ -36,6 +41,7 @@ export const Header = () => {
                   Timeline
                 </li>
                 <li
+                  data-testid="favorite-link"
                   className="cursor-pointer"
                   onClick={() => navigate('/favorites')}
                 >

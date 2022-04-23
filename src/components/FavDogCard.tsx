@@ -43,7 +43,9 @@ export const FavDogCard = (favDogItem: { [x: string]: any }) => {
   if (favDogsItems.length === 0) {
     return (
       <div className="page-center flex-column d-flex justify-content-center align-items-center">
-        <div className="col col-auto">There is no favorite dogs :(</div>
+        <div data-testid="there-is-no-fav-dog" className="col col-auto">
+          There is no favorite dogs :(
+        </div>
         <img
           onClick={() => navigate('/')}
           className="col col-1 flex-row d-flex pt-5 cursor-pointer"
@@ -55,7 +57,7 @@ export const FavDogCard = (favDogItem: { [x: string]: any }) => {
   }
 
   return (
-    <div className="col-12 col-sm-12 col-lg-5 m-auto m-0 py-5">
+    <div className="col-12 col-sm-12 col-lg-5 m-auto m-0 py-5 px-3">
       <div className="row">
         {favDogsItems &&
           favDogsItems.map((item: { id: string; image: { url: string } }) => (
@@ -66,7 +68,7 @@ export const FavDogCard = (favDogItem: { [x: string]: any }) => {
               <img
                 className="card-img w-100 ratio-16x9 figure-img"
                 style={{
-                  background: `url(${item.image.url}) center center / cover no-repeat`,
+                  background: `url(${item.image.url}) center center / contain no-repeat`,
                   width: '300px',
                   height: '200px',
                   borderRadius: '5px',
@@ -76,6 +78,7 @@ export const FavDogCard = (favDogItem: { [x: string]: any }) => {
               <button
                 onClick={() => handleDeleteFavDog(item.id)}
                 className="btn btn-sm btn-danger small"
+                data-testid="unfavorite-btn"
               >
                 Unfavorite
               </button>
