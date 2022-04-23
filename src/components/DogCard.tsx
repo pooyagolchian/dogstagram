@@ -92,7 +92,7 @@ export const DogCard = (currentItems: any) => {
                             onClick={() => handleMoreinfo(item)}
                             className="btn btn-dark btn-sm col-auto ms-3"
                           >
-                            More Info
+                            See More
                           </button>
                         </div>
                       </div>
