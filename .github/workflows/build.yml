@@ -15,6 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17.x
-      - run: npm install
+      - run: npm install --force
       - run: npm test
       - run: npm run build
