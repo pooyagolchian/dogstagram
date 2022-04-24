@@ -35,7 +35,7 @@ export const DogInfo = ({ dogInfo }: Props) => {
                     {breed?.life_span}
                   </div>
                 </div>
-                <div className="fs-5 small py-3">
+                <div className="fs-5 small py-3 flex-wrap d-flex flex-row text-nowrap">
                   {breed?.temperament.split(',').map((tag: string) => {
                     return (
                       <span
