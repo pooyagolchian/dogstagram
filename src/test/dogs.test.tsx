@@ -1,12 +1,9 @@
 /* eslint-disable */
-import { render, screen } from '@testing-library/react'
-import React from 'react'
 import '@testing-library/jest-dom'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { MOCKED_DOG, MOCKED_FAV_DOG } from './mocks'
 import reducer, { dogAction } from '../store/dogs'
-import { App } from '../App'
 
 const server = setupServer(
   rest.get('/images/search', (req, res, ctx) => {
