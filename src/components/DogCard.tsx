@@ -5,7 +5,7 @@ import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Dog } from '../interfaces/IDog'
+import { Dog, FavDog } from '../interfaces/IDog'
 
 interface Props {
   currentItems: Dog[]
@@ -16,9 +16,9 @@ export const DogCard = ({ currentItems }: Props) => {
   const navigate = useNavigate()
   const { addToast } = useToasts()
 
-  const getFavDogs = async () => {
-    const response = await DogsService.FetchFavDogs()
-    await dispatch(dogAction.setFavDogs(response?.data))
+  const getFavDogs = async (): Promise<FavDog[]> => {
+    const response = (await DogsService.FetchFavDogs())?.data
+    await dispatch(dogAction.setFavDogs(response))
     return response
   }
 

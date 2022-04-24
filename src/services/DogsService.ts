@@ -2,15 +2,18 @@ import http from '../helper/Http'
 import {
   Dog,
   FavDog,
-  FetchFavDogBodyData,
-  SearchAllDogBodyData,
+  ParamsData,
   SearchAllDogsByBreedBodyData,
 } from '../interfaces/IDog'
 import { AxiosResponse } from 'axios'
 
-const SearchAllDogs = async (
-  data: SearchAllDogBodyData
-): Promise<AxiosResponse> => {
+const model = {
+  limit: 3,
+  order: 'DESC',
+  page: 0,
+}
+
+const SearchAllDogs = async (data: ParamsData): Promise<AxiosResponse> => {
   return await http.get<Dog[]>('/images/search', { params: data })
 }
 
@@ -40,12 +43,8 @@ const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
 }
 
 const FetchFavDogs = async (): Promise<AxiosResponse> => {
-  return await http.get<FetchFavDogBodyData>('/favourites', {
-    data: {
-      limit: 3,
-      order: 'DESC',
-      page: 0,
-    },
+  return await http.get<FavDog>('/favourites', {
+    data: model,
   })
 }
 
