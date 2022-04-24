@@ -33,7 +33,7 @@ export const Favotites = () => {
 
   if (isLoading) {
     return (
-      <div className="page-center col-1 m-0 m-auto">
+      <div className="page-center col-4 col-md-2 m-0 m-auto">
         <Loader />
       </div>
     )

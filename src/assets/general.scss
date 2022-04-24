@@ -112,6 +112,8 @@ body {
   max-width: 600px !important;
   width: 600px !important;
   margin: 0 auto;
+  padding-left: 1em;
+  padding-right: 1em;
   @media screen and (max-width: 768px) {
     width: 100%;
     max-width: 100% !important;

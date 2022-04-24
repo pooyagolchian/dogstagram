@@ -59,11 +59,11 @@ export const DogCard = ({ currentItems }: Props) => {
             {item.breeds?.map((breed: { name: string }) => {
               return (
                 <Fragment key={breed.name}>
-                  <div className="w-100 d-flex flex-row justify-content-between py-2">
-                    <div className="col col-auto">
+                  <div className="w-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-row justify-content-between py-2">
+                    <div className="col col-12 col-sm-12 col-md-6 col-lg-auto">
                       <div className="fs-5 fw-bold">{breed.name}</div>
                     </div>
-                    <div className="col col-auto">
+                    <div className="col col-12 col-sm-12 col-md-6 col-lg-auto">
                       <button
                         data-testid="seemore-btn"
                         onClick={() => handleMoreinfo(item)}
