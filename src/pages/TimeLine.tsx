@@ -113,7 +113,19 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
   }
 
   if (!dogs) {
-    return <div className="page-center">Result not found!</div>
+    return (
+      <>
+        <Select
+          data-testid="select-breed"
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={breeds}
+          placeholder={'Select Breed'}
+          className="col-12 col-sm-12 col-md-12 col-lg-5 m-0 m-auto pt-3 px-2 px-sm-2 px-md-2 "
+        />
+        <div className="page-center">Result not found!</div>
+      </>
+    )
   }
 
   if (!dogs || (Object.keys(dogs).length === 0 && !isLoading)) {
