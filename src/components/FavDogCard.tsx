@@ -46,7 +46,7 @@ export const FavDogCard = ({ favDogItem }: Props) => {
 
   if (favDogItem.length === 0) {
     return (
-      <div className="page-center flex-column d-flex justify-content-center align-items-center">
+      <div className="flex-column d-flex justify-content-center align-items-center py-5">
         <div data-testid="there-is-no-fav-dog" className="col col-auto">
           There is no favorite dogs :(
         </div>
@@ -61,7 +61,7 @@ export const FavDogCard = ({ favDogItem }: Props) => {
   }
 
   return (
-    <div className="col-12 col-sm-12 col-lg-5 m-auto m-0 py-5 px-3">
+    <div className="app-container py-2">
       <div className="row">
         {favDogItem?.map((item: FavDog) => (
           <div

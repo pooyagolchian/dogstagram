@@ -38,7 +38,7 @@ export const DogCard = ({ currentItems }: Props) => {
     }
   }
   if (currentItems && currentItems.length === 0) {
-    return <div className="page-center"> No dogs to display! </div>
+    return <div className="text-center py-5"> No dogs to display! </div>
   }
 
   return (

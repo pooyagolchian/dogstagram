@@ -25,7 +25,7 @@ export const Header = () => {
   return (
     <div id="fixHeader">
       <div className="header">
-        <div className="app-container py-3 px-3 d-flex">
+        <div className="app-container py-3 d-flex">
           <div className="d-flex flex-row justify-content-between bg-white col-12 w-100 m-0 m-auto">
             <div
               onClick={() => navigate('/')}
