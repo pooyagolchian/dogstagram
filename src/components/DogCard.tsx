@@ -42,11 +42,11 @@ export const DogCard = ({ currentItems }: Props) => {
   }
 
   return (
-    <div className="d-flex justify-content-center align-items-center flex-column px-2">
+    <div className="d-flex justify-content-center align-items-center flex-column px-2 dogs-list">
       {currentItems?.map((item: Dog): JSX.Element => {
         return (
           <div
-            className="d-flex flex-column align-items-center justify-content-center col-12 col-sm-12 col-md-6 col-lg-5 py-3"
+            className="d-flex flex-column align-items-center justify-content-center col-12 col-sm-12 col-md-6 col-lg-4 py-3"
             key={item.id}
           >
             <img

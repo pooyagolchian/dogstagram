@@ -150,7 +150,7 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
         onChange={setSelectedOption}
         options={breeds}
         placeholder={'Select Breed'}
-        className="col-12 col-sm-12 col-md-12 col-lg-5 m-0 m-auto pt-3 px-2 px-sm-2 px-md-2 "
+        className="col-12 col-sm-12 col-md-12 col-lg-4 m-0 m-auto pt-3 px-2 px-sm-2 px-md-2 px-lg-0 "
       />
       <DogCard currentItems={currentItems} />
       <ReactPaginate
@@ -160,7 +160,7 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
         pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="< previous"
-        className="pagination"
+        className="pagination fixed-bottom"
       />
     </>
   )
