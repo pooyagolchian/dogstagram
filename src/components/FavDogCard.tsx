@@ -74,7 +74,7 @@ export const FavDogCard = ({ favDogItem }: Props) => {
             ></div>
             <button
               onClick={() => handleDeleteFavDog(item.id as string)}
-              className="btn btn-sm btn-danger small"
+              className="btn btn-sm unfavorite-btn small"
               data-testid="unfavorite-btn"
             >
               Unfavorite

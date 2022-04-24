@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import DogsService from '../services/DogsService'
 import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
@@ -37,7 +37,8 @@ export const DogCard = ({ currentItems }: Props) => {
       }
     }
   }
-  if (currentItems && currentItems.length === 0) {
+
+  if (currentItems.length === 0) {
     return <div className="text-center py-5"> No dogs to display! </div>
   }
 
@@ -64,18 +65,18 @@ export const DogCard = ({ currentItems }: Props) => {
                     </div>
                     <div className="col col-auto">
                       <button
+                        data-testid="seemore-btn"
+                        onClick={() => handleMoreinfo(item)}
+                        className="btn btn-seemore btn-sm col-auto"
+                      >
+                        See More
+                      </button>
+                      <button
                         onClick={() => handleFavDog(item)}
-                        className="btn btn-sm btn-success col-auto"
+                        className="btn favorite-btn btn-sm col-auto ms-3"
                         data-testid="favorite-btn"
                       >
                         Favorite
-                      </button>
-                      <button
-                        data-testid="seemore-btn"
-                        onClick={() => handleMoreinfo(item)}
-                        className="btn btn-dark btn-sm col-auto ms-3"
-                      >
-                        See More
                       </button>
                     </div>
                   </div>

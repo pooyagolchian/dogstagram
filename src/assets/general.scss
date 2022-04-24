@@ -118,3 +118,27 @@ body {
     width: 100% !important;
   }
 }
+
+.unfavorite-btn {
+  background-color: rgb(14, 71, 177);
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+.favorite-btn {
+  background-color: rgb(233, 66, 0);
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+.btn-seemore {
+  background-color: rgb(37, 37, 37);
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
