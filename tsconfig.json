@@ -15,9 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "suppressImplicitAnyIndexErrors": true,
-
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": ["src"],
-  "exclude": ["cypress"],
+  "exclude": ["cypress"]
 }
