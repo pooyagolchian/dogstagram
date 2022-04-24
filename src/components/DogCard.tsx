@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment } from 'react'
 import DogsService from '../services/DogsService'
 import { dogAction } from '../store/dogs'
 import { useToasts } from 'react-toast-notifications'
