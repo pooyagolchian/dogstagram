@@ -7,7 +7,7 @@ interface Props {
 
 export const DogInfo = ({ dogInfo }: Props) => {
   return (
-    <div className="col-12 col-sm-12 col-md-12 col-lg-5 m-auto m-0 py-4 px-3 px-lg-0">
+    <div className="app-container py-3 px-3">
       <div className="row">
         <Fragment key={dogInfo.id}>
           <div className="col col-12 col-sm-12 col-md-5 col-lg-5">

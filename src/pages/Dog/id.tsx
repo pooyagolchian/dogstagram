@@ -33,7 +33,7 @@ export const DogDetails = () => {
 
   if (isLoading) {
     return (
-      <div className="page-center col-2 col-md-1 m-0 m-auto">
+      <div className="page-center loader col-2 col-md-1 m-0 m-auto">
         <Loader />
       </div>
     )

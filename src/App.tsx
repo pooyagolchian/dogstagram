@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Favotites } from './pages/Favotites'
 import { TimeLine } from './pages/TimeLine'
-
 import { DogDetails } from './pages/Dog/id'
 import { Header } from './components/Header'
 
