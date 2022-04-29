@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dostragram",
+  "name": "Dostragram - Dogs breeds application",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,14 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "android-icon-192x192",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "apple-icon-152x152",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "152x152"
     }
   ],
   "start_url": ".",
