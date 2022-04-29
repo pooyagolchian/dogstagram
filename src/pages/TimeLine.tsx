@@ -150,7 +150,7 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
         onChange={setSelectedOption}
         options={breeds}
         placeholder={'Select Breed'}
-        className="app-container m-0 m-auto pt-3 px-2 px-sm-2 px-md-2 px-lg-0 "
+        className="app-container m-0 m-auto pt-3 px-2 px-sm-2 px-md-2"
       />
       <DogCard currentItems={currentItems} />
       <ReactPaginate
