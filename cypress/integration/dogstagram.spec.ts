@@ -18,6 +18,8 @@ describe('Dogstagram E2E testing', () => {
   })
 
   it('should click on favorite and add to favorites', () => {
+    mockedDogsEndpoint()
+    cy.visit('/')
     cy.get('[data-testid="favorite-btn"]').should('exist')
     cy.get('[data-testid="favorite-btn"]').should(
       'have.class',
@@ -63,14 +65,15 @@ describe('Dogstagram E2E testing', () => {
   it('should click on favorite link and test favorite page', () => {
     cy.get('[data-testid="favorite-link"]').should('exist')
     cy.get('[data-testid="favorite-link"]').click()
+    mockedFavDogEndpoint()
     cy.location('pathname').should('eq', '/favorites')
   })
 
   it('should click on unfavorite and test unfavorite', () => {
-    cy.visit('/favorites')
     mockedFavDogEndpoint()
+    cy.visit('/favorites')
     cy.location('pathname').should('eq', '/favorites')
-    cy.get('[data-testid="unfavorite-btn"]').click({ multiple: true })
+    cy.get('[data-testid="unfavorite-btn"]').click()
     cy.get('[data-testid="unfavorite-btn"]').should('not.exist')
   })
 })
