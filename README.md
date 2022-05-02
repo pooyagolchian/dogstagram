@@ -36,15 +36,86 @@ The page will reload if you make edits.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `yarn cypress open`
+
+Cypress is a next-generation front-end testing tool built for the modern web. We address the key pain points developers and QA engineers face when testing modern applications.
+This command has been used to run the E2E test with Cypress. I have used cypress for E2E and mock data.
+
 ---
 
 # Code scaffolding
 
-- I use several mythology of clean code in this frontend project.
+- I have used several mythology of clean code in this frontend project.
+- I have used React Testing Library to test the redux reducer to test the main functionality of the Dogstagram application.
+- I have isolated all folders for each functionality. I have used the API factory for HTTP requests. Helper, components, pages, interfaces, assets, and store that I have separated in isolated folders. For components, I have used S in SOLID principles, each component uses single functionality in Dogstagram.
+
+```
+├── node_modules (.gitignore)
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── img(image folder)
+│   └── manifest.json
+├── .husky
+│   └── precommit
+├── .github
+│       └── workflows
+│            └── build.yml
+├── src
+│   ├── assets
+│   │   ├── fonts
+│   │   └── style.scss (Main folder of SCSS modules)
+│   ├── helper
+│   │   └── Http.tsx (Axios instance)
+│   ├── components
+│   │   ├── DogCard.tsx
+│   │   ├── DogInfo.tsx
+│   │   ├── Header.tsx
+│   │   ├── Loader.tsx
+│   │   └── FavDogCard.tsx
+│   ├── services (API factories of REST API)
+│   │   └── DogsService.ts
+│   ├── interfaces (Typescript interface)
+│   │   └── IDog.ts
+│   ├── store
+│   │   ├── dogs.ts (Dogs reducers + actions)
+│   │   └── index.ts (Root reducers, Redux-thunk)
+│   ├── test
+│   │   └── dogs.test.tsx
+│   ├── index.tsx
+│   ├── EnvConfig.ts
+│   ├── App.tsx
+│
+├── cypress
+│  │   │── fixtures
+│  │   │    ├── dogs.josn (Sample dog item form pagination response)
+│  │   │    └── fav-dog.json (Sample favotite dog from favorite response)
+│  ├── integration
+│  │        └── dogstagram.spec.ts (Cypress test, E2E and Unit Test)
+│  ├── mock
+│  │     └── api.ts (Mock API call)
+│  ├── plugins
+│  └── support
+├── .gitignore
+├── package.json
+├── .babelrc.json
+├── cypress.json
+├── netlify.toml
+├── tsconfig.json
+├── .prettierrc.json
+└── README.md
+└── yarn.lock
+```
+
+### SOLID
+
+Regarding the `S` for `SOLID` I just tried to keep each function(component as a function as well) to
+just responsible for a single task. That's why I just created a separate component for every part
+and also keep it simple stupid.
 
 ### BEM
 
-BEM is used for methodology with SCSS format to create reusable components for this task. I follow the structure developed in the dummy files.
+BEM has been used for methodology with SCSS format to create reusable components for this task. I have followed the structure developed in the dummy files.
 
 ### Prettier
 
@@ -57,18 +128,6 @@ In addition, I check pretty before every commit by add a pre-commit hook. For mo
 
 Husky is used for git hook pre-commit to format all code with Prettier.
 
-### GitHub actions for automated testing
-
-Use GitHub actions for automated testing and run all Unit Test.
-
-### SOLID
-
-Regarding the `S` for `SOLID` I just tried to keep each function(component as a function as well) to
-just responsible for a single task. That's why I just created a separate component for every part
-and also keep it simple stupid.
-
----
-
 ## Test with React Testing Library
 
 `yarn test`
@@ -76,3 +135,9 @@ and also keep it simple stupid.
 ## Cypress E2E
 
 `yarn cypress open`
+
+---
+
+### GitHub actions for automated testing
+
+I have used GitHub actions for automated testing and run all Unit Test.
