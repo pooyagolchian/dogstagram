@@ -103,8 +103,8 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │
 ├── cypress
 │  │   │── fixtures
-│  │   │    ├── dogs.josn (Sample dog item from pagination response)
-│  │   │    └── fav-dog.json (Sample favotite dog from favorite response)
+│  │   │    ├── dogs.josn (Mock data for dogs - [One item of pagination])
+│  │   │    └── fav-dog.json (Mock data for favorite dog - [One item of favorite])
 │  ├── integration
 │  │        └── dogstagram.spec.ts (Cypress test, E2E and Unit Test)
 │  ├── mock
