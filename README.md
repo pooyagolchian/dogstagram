@@ -92,7 +92,7 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │   │   └── IDog.ts  (Typescript interface)
 │   ├── store
 │   │   ├── dogs.ts (Dogs reducers + actions)
-│   │   └── index.ts (Root reducers, Redux-thunk)
+│   │   └── index.ts (store [combineReducers, redux-thunk, persistReducer])
 │   ├── test
 │   │   └── dogs.test.tsx (Unit test for testing reducers and test with mock data)
 │   ├── index.tsx
