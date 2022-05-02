@@ -60,10 +60,10 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │   └── precommit
 ├── .github
 │       └── workflows
-│            └── build.yml
+│            └── build.yml (Github action on push rules and configuration)
 ├── src
 │   ├── assets
-│   │   ├── fonts
+│   │   ├── fonts (Fonts folder)
 │   │   └── style.scss (Main folder of SCSS modules)
 │   ├── helper
 │   │   └── Http.tsx (Axios instance)
@@ -75,16 +75,18 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │   │   └── FavDogCard.tsx
 │   ├── services (API factories of REST API)
 │   │   └── DogsService.ts
-│   ├── interfaces (Typescript interface)
-│   │   └── IDog.ts
+│   ├── interfaces
+│   │   └── IDog.ts  (Typescript interface)
 │   ├── store
 │   │   ├── dogs.ts (Dogs reducers + actions)
 │   │   └── index.ts (Root reducers, Redux-thunk)
 │   ├── test
-│   │   └── dogs.test.tsx
+│   │   └── dogs.test.tsx (Unit test for testing reducers and test with mock data)
 │   ├── index.tsx
 │   ├── EnvConfig.ts
-│   ├── App.tsx
+│   ├── reportWebVitals.ts
+│   ├── react-app-env.d.ts
+│   └── App.tsx
 │
 ├── cypress
 │  │   │── fixtures
@@ -98,11 +100,11 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │  └── support
 ├── .gitignore
 ├── package.json
-├── .babelrc.json
-├── cypress.json
-├── netlify.toml
+├── .babelrc.json (Babel configuration)
+├── cypress.json (Cypress configuration)
+├── netlify.toml (Netlify configuration)
 ├── tsconfig.json
-├── .prettierrc.json
+├── .prettierrc.json (Prettier configuration for code format)
 └── README.md
 └── yarn.lock
 ```
