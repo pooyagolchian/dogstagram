@@ -41,6 +41,14 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Cypress is a next-generation front-end testing tool built for the modern web. We address the key pain points developers and QA engineers face when testing modern applications.
 This command has been used to run the E2E test with Cypress. I have used cypress for E2E and mock data.
 
+### `yarn build`
+
+- This command build Dogstagram application for production.
+
+### `yarn format`
+
+- This command format all files with Prettier.
+
 ---
 
 # Code scaffolding
@@ -73,6 +81,11 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │   │   ├── Header.tsx
 │   │   ├── Loader.tsx
 │   │   └── FavDogCard.tsx
+│   ├── pages
+│   │   │   └── assets
+│   │   │          └── id.tsx (Dynamic page for more information by id)
+│   │   ├── Favorites.tsx
+│   │   └── TimeLine.tsx
 │   ├── services (API factories of REST API)
 │   │   └── DogsService.ts
 │   ├── interfaces

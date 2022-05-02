@@ -21,7 +21,7 @@ describe('Dogstagram E2E testing', () => {
     cy.get('[data-testid="favorite-btn"]').should('exist')
     cy.get('[data-testid="favorite-btn"]').should(
       'have.class',
-      'btn btn-sm btn-success col-auto'
+      'btn favorite-btn btn-sm col-auto ms-3'
     )
     cy.get('[data-testid="favorite-btn"]').click()
     const options = {
@@ -66,11 +66,11 @@ describe('Dogstagram E2E testing', () => {
     cy.location('pathname').should('eq', '/favorites')
   })
 
-  it('should click on favorite and test unfavorite', () => {
+  it('should click on unfavorite and test unfavorite', () => {
     cy.visit('/favorites')
     mockedFavDogEndpoint()
     cy.location('pathname').should('eq', '/favorites')
-    cy.get('[data-testid="unfavorite-btn"]').click()
+    cy.get('[data-testid="unfavorite-btn"]').click({ multiple: true })
     cy.get('[data-testid="unfavorite-btn"]').should('not.exist')
   })
 })
