@@ -65,7 +65,7 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │   ├── img(image folder)
 │   └── manifest.json
 ├── .husky
-│   └── precommit
+│       └── precommit
 ├── .github
 │       └── workflows
 │            └── build.yml (Github action on push rules and configuration)
