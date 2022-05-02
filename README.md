@@ -1,4 +1,4 @@
-## Dogstagram - Dogs photos and information by breed
+## Dogstagram - Dog's photos and information by breed
 
 This project has been developed with the last version of React.js and Redux (Redux toolkit).
 
@@ -43,17 +43,17 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 
 ### `yarn build`
 
-- This command build Dogstagram application for production.
+- This command builds the Dogstagram application for production.
 
 ### `yarn format`
 
-- This command format all files with Prettier.
+- This command formats all files with Prettier.
 
 ---
 
 # Code scaffolding
 
-- I have used several mythology of clean code in this frontend project.
+- I have used several mythologies of clean code in this frontend project.
 - I have used React Testing Library to test the redux reducer to test the main functionality of the Dogstagram application.
 - I have isolated all folders for each functionality. I have used the API factory for HTTP requests. Helper, components, pages, interfaces, assets, and store that I have separated in isolated folders. For components, I have used S in SOLID principles, each component uses single functionality in Dogstagram.
 
@@ -103,7 +103,7 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 │
 ├── cypress
 │  │   │── fixtures
-│  │   │    ├── dogs.josn (Sample dog item form pagination response)
+│  │   │    ├── dogs.josn (Sample dog item from pagination response)
 │  │   │    └── fav-dog.json (Sample favotite dog from favorite response)
 │  ├── integration
 │  │        └── dogstagram.spec.ts (Cypress test, E2E and Unit Test)
@@ -124,8 +124,8 @@ This command has been used to run the E2E test with Cypress. I have used cypress
 
 ### SOLID
 
-Regarding the `S` for `SOLID` I just tried to keep each function(component as a function as well) to
-just responsible for a single task. That's why I just created a separate component for every part
+Regarding the `S` for `SOLID` I just tried to keep each function(component as a function as well)
+just be responsible for a single task. That's why I just created a separate component for every part
 and also keep it simple stupid.
 
 ### BEM
@@ -135,13 +135,13 @@ BEM has been used for methodology with SCSS format to create reusable components
 ### Prettier
 
 Using [Prettier](https://prettier.io/) for opinionated code formatter.
-It will take care of formatting for you.
+It will take care of the formatting for you.
 Prettier creates an abstract syntax tree from your code and uses it to write new code formatted according to a set of rules.
-In addition, I check pretty before every commit by add a pre-commit hook. For more detail check package.json, husky section.
+In addition, I check pretty before every commit by adding a pre-commit hook. For more detail check package.json, husky section.
 
 ### Husky
 
-Husky is used for git hook pre-commit to format all code with Prettier.
+Modern native Git hooks made easy. Husky is used for git hook pre-commit to format all code with Prettier.
 
 ## Test with React Testing Library
 
