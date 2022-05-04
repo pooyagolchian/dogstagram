@@ -61,7 +61,7 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
     fetchBreedsList().catch((e) => {
       console.error(e)
     })
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     if (selectedOption.length !== 0) {
