@@ -50,11 +50,10 @@ export const DogCard = ({ currentItems }: Props) => {
             className="d-flex flex-column align-items-center justify-content-center app-container py-3"
             key={item.id}
           >
-            <img
-              className="col col-12 figure-img card-img"
-              src={item.url}
-              alt=""
-            />
+            <div
+              className="col col-12 figure-img card-img dog-card-img"
+              style={{ backgroundImage: `url(${item.url})` }}
+            ></div>
 
             {item.breeds?.map(
               (breed: {
