@@ -72,8 +72,10 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
           breed_ids: selectedOption.value,
           limit: 20,
         }
-        const response = await DogsService.SearchAllDogsByBreed(model)
+        const response: any = await DogsService.SearchAllDogsByBreed(model)
         await dispatch(dogAction.setDogs(response?.data))
+        setCurrentItems(dogs)
+        setItemOffset(0)
         await dispatch(dogAction.setLoader(false))
       }
 
@@ -89,7 +91,8 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
       setCurrentItems(dogs.slice(itemOffset, endOffset))
       setPageCount(Math.ceil(dogs.length / itemsPerPage))
     }
-  }, [dogs, itemOffset, itemsPerPage])
+  }, [dogs, itemOffset, itemsPerPage, selectedOption])
+
   const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % dogs.length
     setItemOffset(newOffset)

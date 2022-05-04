@@ -14,13 +14,10 @@ export const DogInfo = ({ dogInfo }: Props) => {
             <img className="col col-12 card-img" src={dogInfo.url} alt="" />
           </div>
 
-          {dogInfo?.breeds?.map((breed: DogInfoBreed) => {
+          {dogInfo?.breeds?.map((breed: DogInfoBreed): JSX.Element => {
             return (
-              <Fragment key={breed?.name}>
-                <div
-                  key={breed?.id}
-                  className="col col-12 col-sm-12 col-md-7 col-lg-7"
-                >
+              <Fragment key={breed?.id}>
+                <div className="col col-12 col-sm-12 col-md-7 col-lg-7">
                   <div className="fs-2 fw-bold">{breed?.name}</div>
                   <div className="fs-5">
                     <span className="text-muted">Bred for:</span>{' '}

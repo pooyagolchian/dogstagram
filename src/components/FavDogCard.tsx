@@ -20,12 +20,12 @@ export const FavDogCard = ({ favDogItem }: Props) => {
   const dispatch = useDispatch()
   const { addToast } = useToasts()
 
-  const handleDeleteFavDog = async (id: string) => {
+  const handleDeleteFavDog = async (id: number) => {
     try {
       await dispatch(dogAction.setLoader(true))
       await DogsService.DeleteFavDogRequest(id)
       const response = await DogsService.FetchFavDogs()
-      dispatch(dogAction.setFavDogs(response?.data))
+      await dispatch(dogAction.setFavDogs(response?.data))
       await dispatch(dogAction.setLoader(false))
       addToast('Remove this dog from favorite!', { appearance: 'success' })
     } catch (error: any) {
@@ -63,24 +63,26 @@ export const FavDogCard = ({ favDogItem }: Props) => {
   return (
     <div className="app-container py-2">
       <div className="row">
-        {favDogItem?.map((item: FavDog) => (
-          <div
-            key={item.id}
-            className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3"
-          >
+        {favDogItem?.map(
+          (item: FavDog): JSX.Element => (
             <div
-              className="card-img w-100 ratio-16x9 figure-img fav-dog-img"
-              style={{ backgroundImage: `url(${item?.image.url})` }}
-            ></div>
-            <button
-              onClick={() => handleDeleteFavDog(item.id as string)}
-              className="btn btn-sm unfavorite-btn small"
-              data-testid="unfavorite-btn"
+              key={item.id}
+              className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3"
             >
-              Unfavorite
-            </button>
-          </div>
-        ))}
+              <div
+                className="card-img w-100 ratio-16x9 figure-img fav-dog-img"
+                style={{ backgroundImage: `url(${item?.image.url})` }}
+              ></div>
+              <button
+                onClick={() => handleDeleteFavDog(item.id)}
+                className="btn btn-sm unfavorite-btn small"
+                data-testid="unfavorite-btn"
+              >
+                Unfavorite
+              </button>
+            </div>
+          )
+        )}
       </div>
     </div>
   )

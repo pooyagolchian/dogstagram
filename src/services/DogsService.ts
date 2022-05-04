@@ -26,19 +26,17 @@ const SearchAllDogsByBreed = async (
 ): Promise<AxiosResponse> => {
   return await http.get<Dog[]>('/images/search', { params: data })
 }
-const FetchDogInfo = async (id: string | undefined): Promise<AxiosResponse> => {
+const FetchDogInfo = async (id: string): Promise<AxiosResponse> => {
   return await http.get<Dog[]>(`/images/${id}`)
 }
 
-const FavDogRequest = async (
-  id: string | undefined
-): Promise<AxiosResponse> => {
+const FavDogRequest = async (id: string): Promise<AxiosResponse> => {
   return await http.post<FavDog>('/favourites', {
     image_id: `${id}`,
     sub_id: 'User-123',
   })
 }
-const DeleteFavDogRequest = async (id: string): Promise<AxiosResponse> => {
+const DeleteFavDogRequest = async (id: number): Promise<AxiosResponse> => {
   return await http.delete<FavDog>(`/favourites/${id}`)
 }
 

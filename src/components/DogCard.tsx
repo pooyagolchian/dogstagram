@@ -56,33 +56,38 @@ export const DogCard = ({ currentItems }: Props) => {
               alt=""
             />
 
-            {item.breeds?.map((breed: { name: string }) => {
-              return (
-                <Fragment key={breed.name}>
-                  <div className="w-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-row justify-content-between py-2">
-                    <div className="col col-12 col-sm-12 col-md-6 col-lg-auto">
-                      <div className="fs-5 fw-bold">{breed.name}</div>
+            {item.breeds?.map(
+              (breed: {
+                reference_image_id: string
+                name: string
+              }): JSX.Element => {
+                return (
+                  <Fragment key={breed.reference_image_id}>
+                    <div className="w-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-row justify-content-between py-2">
+                      <div className="col col-12 col-sm-12 col-md-6 col-lg-auto">
+                        <div className="fs-5 fw-bold">{breed.name}</div>
+                      </div>
+                      <div className="col col-12 col-sm-12 col-md-6 col-lg-auto">
+                        <button
+                          data-testid="seemore-btn"
+                          onClick={() => handleMoreinfo(item)}
+                          className="btn btn-seemore btn-sm col-auto"
+                        >
+                          See More
+                        </button>
+                        <button
+                          onClick={() => handleFavDog(item)}
+                          className="btn favorite-btn btn-sm col-auto ms-3"
+                          data-testid="favorite-btn"
+                        >
+                          Favorite
+                        </button>
+                      </div>
                     </div>
-                    <div className="col col-12 col-sm-12 col-md-6 col-lg-auto">
-                      <button
-                        data-testid="seemore-btn"
-                        onClick={() => handleMoreinfo(item)}
-                        className="btn btn-seemore btn-sm col-auto"
-                      >
-                        See More
-                      </button>
-                      <button
-                        onClick={() => handleFavDog(item)}
-                        className="btn favorite-btn btn-sm col-auto ms-3"
-                        data-testid="favorite-btn"
-                      >
-                        Favorite
-                      </button>
-                    </div>
-                  </div>
-                </Fragment>
-              )
-            })}
+                  </Fragment>
+                )
+              }
+            )}
           </div>
         )
       })}

@@ -19,13 +19,14 @@ export const DogDetails = () => {
 
   useEffect(() => {
     const getDogs = async () => {
-      await dispatch(dogAction.setLoader(true))
-      const response = (await DogsService.FetchDogInfo(id))?.data
-      setDog(response)
-      await dispatch(dogAction.setDogs(response?.data))
-      await dispatch(dogAction.setLoader(false))
+      if (id) {
+        await dispatch(dogAction.setLoader(true))
+        const response = (await DogsService.FetchDogInfo(id))?.data
+        setDog(response)
+        await dispatch(dogAction.setDogs(response?.data))
+        await dispatch(dogAction.setLoader(false))
+      }
     }
-
     getDogs().catch((e) => {
       console.error(e)
     })
