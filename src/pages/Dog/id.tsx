@@ -40,9 +40,5 @@ export const DogDetails = () => {
     )
   }
 
-  return (
-    <>
-      <DogInfo dogInfo={dog} />
-    </>
-  )
+  return <DogInfo dogInfo={dog} />
 }
