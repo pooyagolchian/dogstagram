@@ -12,7 +12,7 @@ This project has been developed with the last version of React.js and Redux (Red
 
 ---
 
-## DEMO URL GITHUB Users
+## DEMO URL
 
 - [DEMO URL](https://dogstagram-react.netlify.app/)
 
