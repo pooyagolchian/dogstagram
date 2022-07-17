@@ -27,8 +27,9 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+     dispatch(dogAction.setLoader(true))
     const getDogs = async () => {
-      await dispatch(dogAction.setLoader(true))
+      try {
       const model = {
         limit: 100,
         page: itemsPerPage,
@@ -36,8 +37,11 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
       }
       const response = await DogsService.SearchAllDogs(model)
       await dispatch(dogAction.setDogs(response?.data))
-      await dispatch(dogAction.setLoader(false))
+      } catch(e) {
+        console.error(e)  
+      }
     }
+    dispatch(dogAction.setLoader(false))
 
     getDogs().catch((e) => {
       console.error(e)
