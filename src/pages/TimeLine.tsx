@@ -131,20 +131,6 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
     )
   }
 
-  // if (!dogs || (Object.keys(dogs).length === 0)) {
-  //   return (
-  //     <div className="page-center flex-column">
-  //       <div className="fs-2" data-testid="no-user-title">
-  //         NO Dogs! <i className="lnr lnr-users" />
-  //       </div>
-
-  //       <div className="cursor-pointer mb-3 fs-4" onClick={handleRefresh}>
-  //         <i className="lnr lnr-redo" data-testid="refresh-link" /> Refresh
-  //       </div>
-  //     </div>
-  //   )
-  // }
-
   return (
     <>
       <Select
