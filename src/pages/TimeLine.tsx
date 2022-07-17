@@ -103,9 +103,6 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
     })
   }
 
-  const handleRefresh = () => {
-    window.location.reload()
-  }
 
   if (isLoading) {
     return (
