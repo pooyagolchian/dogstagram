@@ -41,11 +41,9 @@ export const TimeLine = ({ itemsPerPage }: Props) => {
         console.error(e)  
       }
     }
+    getDogs()
     dispatch(dogAction.setLoader(false))
-
-    getDogs().catch((e) => {
-      console.error(e)
-    })
+   
   }, [])
 
   useEffect(() => {
